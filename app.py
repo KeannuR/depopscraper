@@ -98,7 +98,23 @@ def get_old_listings(search_Term):
             data = response.json()
             for product in data.get('products'):
                 print(product)
-            
+
+def close_cookies(page : Page):
+    clicked = False
+    ct = 1
+    while clicked == False:
+        if ct > 5:
+            print("ERROR CLICKING COOKKIE SCREEN")
+            break
+        if page.locator('button:has-text("Accept")').count() > 0:
+            page.locator('button:has-text("Accept")').click()
+            clicked = True
+        else:
+            ct += 1
+            time.sleep(random.uniform(.5, 1))
+        
+    
+
 def crawl_depop(search_term):
     global cache
     url = return_website(search_term)
@@ -145,9 +161,11 @@ def crawl_depop(search_term):
 
         remove_indexes = []
         for i, val in reversed(list(enumerate(parsed))):
-            if cache.get(val['link']) is None:
+            if cache.get(val['link']) is not None:
                 continue
+            print(val['brand'])
             if val['brand'] != "Chrome Hearts":
+                print("removing")
                 remove_indexes.append(i)
                 continue
 
@@ -165,23 +183,78 @@ def crawl_depop(search_term):
             parsed.pop(i)
 
         #Go to individual listings now :) 
+        Item_Info = []
         for item in parsed:
-            
+            cache[item['link']] = True
             item_page = browser.new_page()
             item_page.goto("https://" + item['link'], wait_until='load')
             
 
+            close_cookies(item_page)
 
-            #make sure depop dont get me 
-            try:
-                page.locator('button:has-text("Accept")').click()
-            except:
-                pass
             content = item_page.content()
-            sizeCond = soup.find("p", "_text_bevez_41 _shared_bevez_6 _normal_bevez_51 styles_attribute__QC7gC").text().strip()
-            print(sizeCond)
-            
+            soup = BeautifulSoup(content, "html.parser")
+            try:
+                sizeCond = soup.find_all("p", "_text_bevez_41 _shared_bevez_6 _normal_bevez_51 styles_attribute__QC7gC") # if this is jewelry it will return the condition only 
+            except:
+                continue
+            print( sizeCond)
+            itemInfo = {}
+            itemInfo['Price'] = item['price']
+            itemInfo['brand'] = item['brand']     #Right now I'm only looking for Chrome Hearts
+            itemInfo['link'] = item['link']
+            for size in sizeCond:
+                if "Size" in size.get_text(strip=True):
+                    itemInfo['Size'] = size.get_text(strip=True)
+                else:
+                    itemInfo['Condition']  = size.get_text(strip=True)
+            try:
+                description = soup.find("p", "_text_bevez_41 _shared_bevez_6 _normal_bevez_51 styles_textWrapper__v3kxJ styles_textWrapper--collapsed__YnecK").get_text(strip=True)
+            except:
+                continue
+            #Simple Filter 
+            itemInfo['descPass'] = True
+            for keyword in filter_keywords:
+                if keyword in description:
+                    itemInfo['descPass'] = False
+            #Star Info:
+            try:
+                stars = soup.find_all("svg", "styles_stars__Ca377")
+            except:
+                continue
+            starCount = 0
+
+            for star in stars: 
+                if star.find('title').text == "Full Star":
+                    starCount += 1 
+                if star.find('title').text == "Half Star":
+                    starCount =+ 0.5
+            starCount = starCount / 4
+            itemInfo['Stars'] = starCount
+
+
+            item_page.mouse.wheel(0, 400)
+            time.sleep(random.randrange(1,2) / 2 ) 
+
+            try: 
+                reviewCount = soup.find("p", "_text_bevez_41 _shared_bevez_6 _normal_bevez_51")
+            except:
+                continue
+            print(reviewCount.get_text())
+                
+            Item_Info.append(itemInfo)
+            #make sure depop dont get me 
+
+            #item_page.close()
             time.sleep(random.randrange(1, 5))
+        #Final Review of all Listings
+        def confidenceRating(item):
+            pass
+        for item in Item_Info:
+            if itemInfo['Condition'] == "Brand New":
+                continue
+                
+
 
     
 
