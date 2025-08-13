@@ -223,13 +223,16 @@ def crawl_depop(search_term):
             except:
                 continue
             starCount = 0
-
-            for star in stars: 
+     
+            for star in stars:
+                className = (star.parent.get_attribute_list("class"))
+                print(className)
                 if star.find('title').text == "Full Star":
                     starCount += 1 
                 if star.find('title').text == "Half Star":
                     starCount =+ 0.5
-            starCount = starCount / 4
+
+            #starCount = starCount / 4
             itemInfo['Stars'] = starCount
 
 
@@ -241,14 +244,28 @@ def crawl_depop(search_term):
             except:
                 continue
             print(reviewCount.get_text())
+
+            if reviewCount.get_text() == "About us":
+                itemInfo['ReviewCount'] = "N/A"
+            else:
+            #clean 
+                revcount = reviewCount.get_text()
+                revcount = revcount.replace("(" , "").replace(")", "").strip()
+                itemInfo['ReviewCount'] = revcount
+            
+                
                 
             Item_Info.append(itemInfo)
             #make sure depop dont get me 
 
-            #item_page.close()
+            
+            item_page.close()
+            print(itemInfo)
             time.sleep(random.randrange(1, 5))
+
         #Final Review of all Listings
         def confidenceRating(item):
+
             pass
         for item in Item_Info:
             if itemInfo['Condition'] == "Brand New":
