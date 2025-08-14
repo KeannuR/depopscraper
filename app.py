@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 import requests
 import random
+import threading
 load_dotenv("keys.env")
 from playwright.sync_api import sync_playwright, Page
 #turns out all this shit just wasted my time cause I thought I could go through the webapi but that only returns some fucking bullshit items and not the most recent items 
@@ -163,9 +164,9 @@ def crawl_depop(search_term):
         for i, val in reversed(list(enumerate(parsed))):
             if cache.get(val['link']) is not None:
                 continue
-            print(val['brand'])
+            #print(val['brand'])
             if val['brand'] != "Chrome Hearts":
-                print("removing")
+                #print("removing")
                 remove_indexes.append(i)
                 continue
 
@@ -187,10 +188,15 @@ def crawl_depop(search_term):
         for item in parsed:
             cache[item['link']] = True
             item_page = browser.new_page()
-            item_page.goto("https://" + item['link'], wait_until='load')
+            #easy to thread
+              
             
+            
+            with item_page.expect_response(lambda resp: "https://webapi.depop.com/api/v1/product/by-slug/" in resp.url , timeout=100000000) as resp:
+                item_page.goto("https://" + item['link'])
+                close_cookies(item_page)
 
-            close_cookies(item_page)
+            apiInfo = resp.value.json()
 
             content = item_page.content()
             soup = BeautifulSoup(content, "html.parser")
@@ -217,41 +223,35 @@ def crawl_depop(search_term):
             for keyword in filter_keywords:
                 if keyword in description:
                     itemInfo['descPass'] = False
+            itemInfo['description'] = description
             #Star Info:
+            '''
             try:
                 stars = soup.find_all("svg", "styles_stars__Ca377")
             except:
                 continue
             starCount = 0
-     
+            #https://webapi.depop.com/api/v1/product/by-slug/charsfreed-bundle-deal-black-chrome-is/extended/?lang=en&force_fee_calculation=false&include_sold_sizes=true
             for star in stars:
+                ct = 0
                 className = (star.parent.get_attribute_list("class"))
                 print(className)
                 if star.find('title').text == "Full Star":
                     starCount += 1 
                 if star.find('title').text == "Half Star":
                     starCount =+ 0.5
+            '''
+     
+          
 
             #starCount = starCount / 4
-            itemInfo['Stars'] = starCount
+            itemInfo['stars'] =apiInfo["seller_reviews"]["reviews_rating"]
+            print("User has this many stars:" , itemInfo['stars'])
+            itemInfo["totalReviews"] = apiInfo["seller_reviews"]["reviews_total"]
+            itemInfo['productType'] = apiInfo['attributes']['product_type']
+            itemInfo['items_sold'] = apiInfo['seller_activity']['items_sold']
+         
 
-
-            item_page.mouse.wheel(0, 400)
-            time.sleep(random.randrange(1,2) / 2 ) 
-
-            try: 
-                reviewCount = soup.find("p", "_text_bevez_41 _shared_bevez_6 _normal_bevez_51")
-            except:
-                continue
-            print(reviewCount.get_text())
-
-            if reviewCount.get_text() == "About us":
-                itemInfo['ReviewCount'] = "N/A"
-            else:
-            #clean 
-                revcount = reviewCount.get_text()
-                revcount = revcount.replace("(" , "").replace(")", "").strip()
-                itemInfo['ReviewCount'] = revcount
             
                 
                 
@@ -265,11 +265,43 @@ def crawl_depop(search_term):
 
         #Final Review of all Listings
         def confidenceRating(item):
+            rating = 1.0
+            item['Price'] = int(item['Price'].replace(".", "").replace("$", "").strip()) / 100
 
-            pass
+            #Instant Pass/Fail Criteria
+            if item['items_sold'] > 100:
+                return True
+            if item['descPass'] == False:
+                return False
+            if item['Price'] < 15:
+                return False
+            #grade scale
+            if item['stars'] < 4.4:
+                rating -= .1
+            if item['totalReviews'] == 0:
+                rating -= .1
+            #brand new stuff is more likely to be a replica
+            if item['Condition'] == "Brand New":
+                rating -= .15
+            else:
+            
+                rating += .1
+            
+            #my estimated sweet spot
+            if item['Price'] > 20 and item['Price'] < 100:
+                rating += .15
+            if item['items_sold'] < 100 and item['items_sold'] > 50:
+                rating += .2
+            if rating >= 1:
+                return True
+            else:
+                return False
+            
         for item in Item_Info:
-            if itemInfo['Condition'] == "Brand New":
-                continue
+            cache[item['link']] = True
+            if confidenceRating(item) == True:
+                print("GOOD ITEM FOUND!!!", item)
+        save_cache()
                 
 
 
