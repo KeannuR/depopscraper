@@ -4,9 +4,21 @@ import os
 from dotenv import load_dotenv
 import requests
 import random
+
+#
+import logging
+logging.basicConfig(filename="scraper.log", level=logging.INFO, force=True)
+#
 import threading
 load_dotenv("keys.env")
 from playwright.sync_api import sync_playwright, Page
+#schedulers
+from apscheduler.schedulers.background import BackgroundScheduler
+from datetime import datetime, timezone
+
+
+
+
 #turns out all this shit just wasted my time cause I thought I could go through the webapi but that only returns some fucking bullshit items and not the most recent items 
 from fastapi import HTTPException, FastAPI
 import time
@@ -162,7 +174,12 @@ def crawl_depop(search_term):
 
         remove_indexes = []
         for i, val in reversed(list(enumerate(parsed))):
+            print(cache.get(val['link']))
             if cache.get(val['link']) is not None:
+                remove_indexes.append(i)
+                continue
+            if "omarcolon86" in val['link']: #fuck this guy
+                remove_indexes.append(i)
                 continue
             #print(val['brand'])
             if val['brand'] != "Chrome Hearts":
@@ -224,23 +241,7 @@ def crawl_depop(search_term):
                 if keyword in description:
                     itemInfo['descPass'] = False
             itemInfo['description'] = description
-            #Star Info:
-            '''
-            try:
-                stars = soup.find_all("svg", "styles_stars__Ca377")
-            except:
-                continue
-            starCount = 0
-            #https://webapi.depop.com/api/v1/product/by-slug/charsfreed-bundle-deal-black-chrome-is/extended/?lang=en&force_fee_calculation=false&include_sold_sizes=true
-            for star in stars:
-                ct = 0
-                className = (star.parent.get_attribute_list("class"))
-                print(className)
-                if star.find('title').text == "Full Star":
-                    starCount += 1 
-                if star.find('title').text == "Half Star":
-                    starCount =+ 0.5
-            '''
+   
      
           
 
@@ -265,12 +266,14 @@ def crawl_depop(search_term):
 
         #Final Review of all Listings
         def confidenceRating(item):
-            rating = 1.0
+            rating = 0.7
             item['Price'] = int(item['Price'].replace(".", "").replace("$", "").strip()) / 100
-
+            print(item['Price'])
             #Instant Pass/Fail Criteria
-            if item['items_sold'] > 100:
+            '''if item['items_sold'] > 100:
                 return True
+            '''
+            
             if item['descPass'] == False:
                 return False
             if item['Price'] < 15:
@@ -282,14 +285,16 @@ def crawl_depop(search_term):
                 rating -= .1
             #brand new stuff is more likely to be a replica
             if item['Condition'] == "Brand New":
-                rating -= .15
+                rating -= .2
             else:
             
                 rating += .1
             
             #my estimated sweet spot
-            if item['Price'] > 20 and item['Price'] < 100:
+            if item['Price'] > 20 and item['Price'] < 250:
                 rating += .15
+            else:
+                rating += .1
             if item['items_sold'] < 100 and item['items_sold'] > 50:
                 rating += .2
             if rating >= 1:
@@ -300,21 +305,81 @@ def crawl_depop(search_term):
         for item in Item_Info:
             cache[item['link']] = True
             if confidenceRating(item) == True:
-                print("GOOD ITEM FOUND!!!", item)
+                logging.info("GOOD ITEM FOUND!!!")
+                alert(item=item)
         save_cache()
-                
+#idgaf its hardcoded no one else is gonna se this
+webhookurl = "https://discord.com/api/webhooks/1397104407186903050/J6XsrZdLejw6EMW4j7DwU_nbCtg_b5l7VCngIQq23-XH_sd9HeIk6Kg_TtZ0Wv15X3CV"
+print("Webhook Url: ", webhookurl)
+def alert(item):
+    # Build a plain string (not a set!)
+    content = (
+        f"GOOD ITEM FOUND!\n"
+        f"Price: {item.get('Price')}\n"
+        f"Link: https://{item.get('link')}\n"
+        f"Description: {item.get('description')}\n"
+        f"Product type: {item.get('productType')}\n"
+        f"@everyone"
+    )
+
+    payload = {
+        "content": content,
+        # Optional: ensure @everyone actually pings
+        "allowed_mentions": {"parse": ["everyone"]}
+    }
+
+    try:
+        r = requests.post(webhookurl, json=payload, timeout=10)
+        if r.status_code >= 400:
+            logging.error("Discord webhook failed: %s %s", r.status_code, r.text)
+        else:
+            logging.info("Alert sent: %s", item.get('link'))
+    except Exception as e:
+        logging.exception("Error sending alert")  # logs stacktrace
 
 
+
+scheduler = BackgroundScheduler()
+checkTime = 15 * 60 #15 Minutes
+cache_file = "cache.json" 
+
+
+def job():
+    global cache
+    try:
+        logging.info(f"[{datetime.now(timezone.utc)}] Running Scrape job")
+        cache = load_cache()
+        crawl_depop("chrome hearts")
+        save_cache()
+    except Exception as e:
+        print(' Error', e)
+from datetime import timedelta
+def startup():
+    global cache
+    logging.info(f"Starting up:  {datetime.now(timezone.utc)}")
+    cache = load_cache()
+    scheduler.add_job(job, trigger="interval", next_run_time=datetime.now(timezone.utc) + timedelta(seconds= 1), minutes= 10)
+    scheduler.start()
+def shutdown():
+    logging.info(f"Shutting Down: {datetime.now(timezone.utc)}")
+    save_cache()
+    scheduler.shutdown()
     
-
-
         
-        
+import atexit
+atexit.register(shutdown)
+
 
 
 if __name__ == "__main__":
     global cache
     cache = {}
     load_cache()
-    crawl_depop("chrome hearts")
+    startup()
+    try:
+        while True:
+            time.sleep(3600)
+    except (KeyboardInterrupt, SystemExit):
+        pass
+        #shutdown()
     #get_old_listings("Chrome Hearts")
