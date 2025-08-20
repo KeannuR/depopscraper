@@ -1,0 +1,181 @@
+INFO:root:Starting up:  2025-08-19 23:27:38.608274+00:00
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "job" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 23:27:39 UTC)" (scheduled at 2025-08-19 23:27:39.608602+00:00)
+INFO:root:[2025-08-19 23:27:39.615251+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 16:37:39 PDT)" executed successfully
+INFO:root:Shutting Down: 2025-08-19 23:28:18.500218+00:00
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:root:Starting up:  2025-08-19 23:29:56.950334+00:00
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "job" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 23:29:57 UTC)" (scheduled at 2025-08-19 23:29:57.950660+00:00)
+INFO:root:[2025-08-19 23:29:57.966749+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 16:39:57 PDT)" executed successfully
+INFO:root:Shutting Down: 2025-08-19 23:31:12.241122+00:00
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:root:Starting up:  2025-08-19 23:31:15.343733+00:00
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "job" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 23:31:16 UTC)" (scheduled at 2025-08-19 23:31:16.344071+00:00)
+INFO:root:[2025-08-19 23:31:16.351344+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 16:41:16 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 16:51:16 PDT)" (scheduled at 2025-08-19 16:41:16.344071-07:00)
+INFO:root:[2025-08-19 23:41:16.348061+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 16:51:16 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:01:16 PDT)" (scheduled at 2025-08-19 16:51:16.344071-07:00)
+INFO:root:[2025-08-19 23:51:16.355218+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:01:16 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:11:16 PDT)" (scheduled at 2025-08-19 17:01:16.344071-07:00)
+INFO:root:[2025-08-20 00:01:16.353084+00:00] Running Scrape job
+INFO:root:GOOD ITEM FOUND!!!
+INFO:root:Alert sent: depop.com/products/halfpricehtx-longsleeve-sizem-condition910-please-note/
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:11:16 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:21:16 PDT)" (scheduled at 2025-08-19 17:11:16.344071-07:00)
+INFO:root:[2025-08-20 00:11:16.349340+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:21:16 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:31:16 PDT)" (scheduled at 2025-08-19 17:21:16.344071-07:00)
+INFO:root:[2025-08-20 00:21:16.350338+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:31:16 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:41:16 PDT)" (scheduled at 2025-08-19 17:31:16.344071-07:00)
+INFO:root:[2025-08-20 00:31:16.351306+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:41:16 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:51:16 PDT)" (scheduled at 2025-08-19 17:41:16.344071-07:00)
+INFO:root:[2025-08-20 00:41:16.353371+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 17:51:16 PDT)" executed successfully
+INFO:root:Shutting Down: 2025-08-20 00:44:34.330169+00:00
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:root:Starting up:  2025-08-20 01:13:32.664835+00:00
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "job" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-20 01:13:33 UTC)" (scheduled at 2025-08-20 01:13:33.665231+00:00)
+INFO:root:[2025-08-20 01:13:33.668458+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 18:23:33 PDT)" executed successfully
+INFO:root:Shutting Down: 2025-08-20 01:17:24.719577+00:00
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:root:Starting up:  2025-08-20 01:17:28.565761+00:00
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "job" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-20 01:17:29 UTC)" (scheduled at 2025-08-20 01:17:29.566159+00:00)
+INFO:root:[2025-08-20 01:17:29.575724+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 18:27:29 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 18:37:29 PDT)" (scheduled at 2025-08-19 18:27:29.566159-07:00)
+INFO:root:[2025-08-20 01:27:29.571615+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 18:37:29 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 18:47:29 PDT)" (scheduled at 2025-08-19 18:37:29.566159-07:00)
+INFO:root:[2025-08-20 01:37:29.568533+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 18:47:29 PDT)" executed successfully
+INFO:root:Shutting Down: 2025-08-20 01:37:50.842110+00:00
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:root:Starting up:  2025-08-20 02:08:42.224014+00:00
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "job" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-20 02:08:43 UTC)" (scheduled at 2025-08-20 02:08:43.224358+00:00)
+INFO:root:[2025-08-20 02:08:43.234175+00:00] Running Scrape job
+INFO:root:GOOD ITEM FOUND!!!
+INFO:root:Alert sent: depop.com/products/sickafvintage-chrome-hearts-white-and-blue/
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 19:18:43 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 19:28:43 PDT)" (scheduled at 2025-08-19 19:18:43.224358-07:00)
+INFO:root:[2025-08-20 02:18:43.235396+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 19:28:43 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 19:38:43 PDT)" (scheduled at 2025-08-19 19:28:43.224358-07:00)
+INFO:root:[2025-08-20 02:28:43.238067+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 19:38:43 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 19:48:43 PDT)" (scheduled at 2025-08-19 19:38:43.224358-07:00)
+INFO:root:[2025-08-20 02:38:43.241195+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 19:48:43 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 19:58:43 PDT)" (scheduled at 2025-08-19 19:48:43.224358-07:00)
+INFO:root:[2025-08-20 02:48:43.234667+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 19:58:43 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:08:43 PDT)" (scheduled at 2025-08-19 19:58:43.224358-07:00)
+INFO:root:[2025-08-20 02:58:43.241853+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:08:43 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:18:43 PDT)" (scheduled at 2025-08-19 20:08:43.224358-07:00)
+INFO:root:[2025-08-20 03:08:43.237286+00:00] Running Scrape job
+INFO:root:GOOD ITEM FOUND!!!
+INFO:root:Alert sent: depop.com/products/brrrrrra-bape-x-chrome-hearts-black/
+INFO:root:GOOD ITEM FOUND!!!
+INFO:root:Alert sent: depop.com/products/brrrrrra-black-bape-chrome-hearts-tee/
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:18:43 PDT)" executed successfully
+INFO:root:Shutting Down: 2025-08-20 03:09:23.561189+00:00
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:root:Starting up:  2025-08-20 03:10:00.564912+00:00
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "job" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-20 03:10:01 UTC)" (scheduled at 2025-08-20 03:10:01.565264+00:00)
+INFO:root:[2025-08-20 03:10:01.581358+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:20:01 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:30:01 PDT)" (scheduled at 2025-08-19 20:20:01.565264-07:00)
+INFO:root:[2025-08-20 03:20:01.574075+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:30:01 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:40:01 PDT)" (scheduled at 2025-08-19 20:30:01.565264-07:00)
+INFO:root:[2025-08-20 03:30:01.569414+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:40:01 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:50:01 PDT)" (scheduled at 2025-08-19 20:40:01.565264-07:00)
+INFO:root:[2025-08-20 03:40:01.573634+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 20:50:01 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:00:01 PDT)" (scheduled at 2025-08-19 20:50:01.565264-07:00)
+INFO:root:[2025-08-20 03:50:01.576120+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:00:01 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:10:01 PDT)" (scheduled at 2025-08-19 21:00:01.565264-07:00)
+INFO:root:[2025-08-20 04:00:01.576657+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:10:01 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:20:01 PDT)" (scheduled at 2025-08-19 21:10:01.565264-07:00)
+INFO:root:[2025-08-20 04:10:01.570543+00:00] Running Scrape job
+INFO:root:GOOD ITEM FOUND!!!
+INFO:root:Alert sent: depop.com/products/kratos_krafts-labubu-chrome-hearts-outfit-labubu/
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:20:01 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:30:01 PDT)" (scheduled at 2025-08-19 21:20:01.565264-07:00)
+INFO:root:[2025-08-20 04:20:01.574233+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:30:01 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:40:01 PDT)" (scheduled at 2025-08-19 21:30:01.565264-07:00)
+INFO:root:[2025-08-20 04:30:01.578907+00:00] Running Scrape job
+INFO:root:GOOD ITEM FOUND!!!
+INFO:root:Alert sent: depop.com/products/flxxrr2lord-chrome-heart-black-horseshoe-long-d64c/
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:40:01 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:50:01 PDT)" (scheduled at 2025-08-19 21:40:01.565264-07:00)
+INFO:root:[2025-08-20 04:40:01.578563+00:00] Running Scrape job
+INFO:root:GOOD ITEM FOUND!!!
+INFO:root:Alert sent: depop.com/products/joshe11-chrome-heart-glasses-blue-light/
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 21:50:01 PDT)" executed successfully
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-19 22:00:01 PDT)" (scheduled at 2025-08-19 21:50:01.565264-07:00)
+INFO:root:[2025-08-20 04:50:01.569664+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 22:00:01 PDT)" executed successfully
+INFO:root:Shutting Down: 2025-08-20 04:55:48.982144+00:00
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:root:Starting up:  2025-08-20 04:57:28.712295+00:00
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "job" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-20 04:57:29 UTC)" (scheduled at 2025-08-20 04:57:29.712733+00:00)
+INFO:root:[2025-08-20 04:57:29.726047+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 22:07:29 PDT)" executed successfully
+INFO:root:Shutting Down: 2025-08-20 04:57:35.495891+00:00
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:root:Starting up:  2025-08-20 05:09:19.057022+00:00
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "job" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-20 05:09:20 UTC)" (scheduled at 2025-08-20 05:09:20.057416+00:00)
+INFO:root:[2025-08-20 05:09:20.073336+00:00] Running Scrape job
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 22:19:20 PDT)" executed successfully
+INFO:root:Shutting Down: 2025-08-20 05:09:21.372560+00:00
+INFO:apscheduler.scheduler:Scheduler has been shut down
+INFO:root:Starting up:  2025-08-20 05:09:41.448260+00:00
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "job" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:apscheduler.executors.default:Running job "job (trigger: interval[0:10:00], next run at: 2025-08-20 05:09:42 UTC)" (scheduled at 2025-08-20 05:09:42.448682+00:00)
+INFO:root:[2025-08-20 05:09:42.457150+00:00] Running Scrape job
+INFO:root:GOOD ITEM FOUND!!!
+INFO:root:Alert sent: depop.com/products/luxuriousresells1-black-los-angeles-chrome-hearts/
+INFO:apscheduler.executors.default:Job "job (trigger: interval[0:10:00], next run at: 2025-08-19 22:19:42 PDT)" executed successfully
+INFO:root:Shutting Down: 2025-08-20 05:19:31.537244+00:00
+INFO:apscheduler.scheduler:Scheduler has been shut down
