@@ -125,17 +125,48 @@ def close_cookies(page : Page):
             ct += 1
             time.sleep(random.uniform(.5, 1))
         
-    
+def new_context(browser):
+    return browser.new_context(
+        user_agent=(
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+        ),
+        locale="en-US",
+        timezone_id="America/Los_Angeles",
+        viewport={"width": 1366, "height": 900},
+        device_scale_factor=1.0,
+        is_mobile=False,
+        has_touch=False,
+    )    
 
 def crawl_depop(search_term):
     global cache
     url = return_website(search_term)
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headless=True
+            headless=True,
+            args=[
+            "--no-sandbox",
+            "--disable-dev-shm-usage",
+            "--disable-blink-features=AutomationControlled",
+        ],
+        
         )
-        page = browser.new_page()
-        page.goto(url=url)
+        ctx = browser.new_context(
+        user_agent=("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/127.0.0.0 Safari/537.36"),
+        locale="en-US",
+        timezone_id="America/Los_Angeles",
+        viewport={"width": 1366, "height": 900},
+        is_mobile=False,
+        has_touch=False,
+        )
+        # Hide webdriver signal
+        ctx.add_init_script('Object.defineProperty(navigator, "webdriver", {get: () => undefined})')
+
+        page = ctx.new_page()
+        page.goto(url=url, wait_until="domcontentloaded")
         html = page.content()
         try:
             locator = page.locator('button:has-text("Accept")')
@@ -202,7 +233,7 @@ def crawl_depop(search_term):
         Item_Info = []
         for item in parsed:
             cache[item['link']] = True
-            item_page = browser.new_page()
+            item_page = ctx.new_page()
             #easy to thread
               
             
