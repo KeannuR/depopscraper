@@ -78,8 +78,7 @@ def get_old_listings(search_Term):
     url = return_website(search_Term)
     with sync_playwright() as p:
             browser = p.chromium.launch(
-            headless=True,
-            #executable_path="\Program Files\Google\Chrome\Application\chrome.exe"  # Adjust this path
+            headless=True
         )
             page = browser.new_page()
         #begin waitig for url that contains the API path
@@ -133,8 +132,7 @@ def crawl_depop(search_term):
     url = return_website(search_term)
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headless=False,
-            executable_path="\Program Files\Google\Chrome\Application\chrome.exe"  # Adjust this path
+            headtgless=False
         )
         page = browser.new_page()
         page.goto(url=url)

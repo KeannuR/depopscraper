@@ -1,0 +1,17 @@
+# Web scraping / automation
+playwright==1.46.0
+beautifulsoup4==4.12.3
+requests==2.32.3
+
+# API / server
+fastapi==0.115.0
+python-dotenv==1.0.1
+
+# Scheduling
+APScheduler==3.10.4
+
+# Utilities
+pytz==2024.2   # APScheduler dependency (ensure consistent TZ handling)
+
+# Optional: If you want colored logs in dev (safe to omit in prod)
+colorlog==6.8.2
