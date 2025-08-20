@@ -132,7 +132,7 @@ def crawl_depop(search_term):
     url = return_website(search_term)
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headtgless=False
+            headless=True
         )
         page = browser.new_page()
         page.goto(url=url)
