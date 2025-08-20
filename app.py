@@ -63,7 +63,7 @@ app.add_middleware(
     allow_headers=["Content-Type"],
 )
 
-filter_keywords =  {"#notreal", "hangtags", "hang tags", "comes in bag", "comes in original bag", "tagged for visibility", "original tags "}
+filter_keywords =  {"#notreal", "hangtags", "hang tags", "comes in bag", "comes in original bag", "tagged for visibility", "original tags", "ifykyk"}
 #if price is less than this dont even consider
 basic_price_check = 15
 
@@ -78,8 +78,8 @@ def get_old_listings(search_Term):
     url = return_website(search_Term)
     with sync_playwright() as p:
             browser = p.chromium.launch(
-            headless=False,
-            executable_path="\Program Files\Google\Chrome\Application\chrome.exe"  # Adjust this path
+            headless=True,
+            #executable_path="\Program Files\Google\Chrome\Application\chrome.exe"  # Adjust this path
         )
             page = browser.new_page()
         #begin waitig for url that contains the API path
@@ -99,7 +99,7 @@ def get_old_listings(search_Term):
                         locator.click()
                     else:
                         pass
-                except:
+                finally:
                     print("fuck")
                 #scroll
                 for _ in range(4):
@@ -309,7 +309,7 @@ def crawl_depop(search_term):
                 alert(item=item)
         save_cache()
 #idgaf its hardcoded no one else is gonna se this
-webhookurl = "https://discord.com/api/webhooks/1397104407186903050/J6XsrZdLejw6EMW4j7DwU_nbCtg_b5l7VCngIQq23-XH_sd9HeIk6Kg_TtZ0Wv15X3CV"
+webhookurl = os.getenv("webhook_url")
 print("Webhook Url: ", webhookurl)
 def alert(item):
     # Build a plain string (not a set!)
